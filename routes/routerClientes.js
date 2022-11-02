@@ -15,14 +15,16 @@ class RouterClientes{
         //logr.debug('inicio de start()',{recurso:'[na]'})
         router.get('/comentarios',this.controllerClientes.obtenerComentariosTodos)
         router.post('/comentarios',this.controllerClientes.guardarComentarios)
+        router.delete('/comentarios',this.controllerClientes.borrarComentariosTodos)
+
         router.get('/objetos',this.controllerClientes.obtenerObjetosTodos)
+        router.post('/objetos',this.controllerClientes.guardarObjetos)
+        router.delete('/objetos',this.controllerClientes.borrarObjetosTodos)
+        router.delete('/objetos/:id',this.controllerClientes.borrarObjeto)
+
         router.get('/objetosCarrito',this.controllerClientes.obtenerObjetosCarritosTodos)
         router.get('/objetosCarrito/:id',this.controllerClientes.obtenerObjetosCarrito)
-        router.post('/objetos',this.controllerClientes.guardarObjetos)
         router.post('/objetosCarrito/:id/objetos',this.controllerClientes.guardarObjetosCarrito)
-        router.delete('/objetos/:id',this.controllerClientes.borrarObjeto)
-        router.delete('/objetos',this.controllerClientes.borrarObjetosTodos)
-        router.delete('/comentarios',this.controllerClientes.borrarComentariosTodos)
         router.delete('/objetosCarrito/:id/objetos',this.controllerClientes.borrarObjetosCarrito)
 
         return router

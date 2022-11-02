@@ -81,6 +81,38 @@ getLogout=(req,res)=>{
     return res.render('logout',web)
 }
 
+getSignup=(req,res)=>{
+    res.sendFile(path.resolve(__dirname, '../public')+'/signup.html')
+}
+postSignup=(req,res)=>{
+    console.log("req.user.postSignup.RoutesJS",req.user)
+    let username=req.user.username
+    let name=req.user.name
+    let email=req.user.email
+    let address=req.user.address
+    let age=req.user.age
+    let telephone=req.user.telephone
+    res.render('userProfile',{username,name,email,address,age,telephone})
+}
+getUserData=(req,res)=>{
+    if (req.user === undefined) {
+        // The user is not logged in
+        res.json({});
+    } else {
+        res.json({
+            username: req.user
+        });
+    }
+}
+getFailSignup=(req,res)=>{
+    res.write('Error: El usuario ya existe');
+    res.end();
+}
+getFailLogin=(req,res)=>{
+    res.write('Error: El usuario o password es invalido');
+    res.end();
+}
+
  /* #endregion */
 
 /* #region. 3.Authorization clientes */

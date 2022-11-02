@@ -5,7 +5,7 @@ const modname='[productos.LDB.model.js]'
 const logr=logd.child({modulo:`${modname}`})
 
 let connProductosLDB=mongoose.createConnection(mongodb.connection.urlC,mongodb.options)
-//logr.debug(JSON.stringify({connProductosLDB}),{recurso:'connProductosLDB'})
+//logr.debug(connProductosLDB,{recurso:'connProductosLDB'})
 const productosCollection='productosGeneral'
 
 const productosSchema=new mongoose.Schema({

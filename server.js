@@ -28,8 +28,8 @@ const MongoStore=require('connect-mongo')
 const mongoose=require('mongoose')
 
 //const apiRouterClientes=require('./b11.routes/apiRouterClientes');
-const apiRouterOper=require('./routes/apiRouterOperaciones');
-const apiRouterAuth=require('./routes/apiRouterAuth')
+//const apiRouterOper=require('./routes/apiRouterOperaciones');
+//const apiRouterAuth=require('./routes/apiRouterAuth')
 const RouterAdmin=require('./routes/routerAdmin')
 const routerAdmin=new RouterAdmin()
 const RouterAuth=require('./routes/routerAuthWeb')
@@ -285,11 +285,11 @@ app.use(passport.sesionAuth)
 app.use('/',routerAuth.start())
 app.use('/login',routerAuth.start())
 
-app.get('/signup',apiRouterAuth.getSignup)
-app.post('/signup',passport.authSignup,apiRouterAuth.postSignup)
-app.get('/user_data', apiRouterAuth.getUserData);
-app.get('/failsignup',apiRouterAuth.getFailSignup)
-app.get('/faillogin',apiRouterAuth.getFailLogin)
+app.get('/signup',routerAuth.start())
+app.post('/signup',routerAuth.start())
+app.get('/user_data', routerAuth.start())
+app.get('/failsignup',routerAuth.start())
+app.get('/faillogin',routerAuth.start())
 
 //5.2.Rutas de autorización
 

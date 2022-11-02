@@ -13,13 +13,20 @@ class RouterAuth{
     }
 
     start(){
+       
         //logr.debug('inicio de start()',{recurso:'[na]'})
         router.get('/',this.controllerAuth.getRoot)
         router.get('/login',this.controllerAuth.getLogin)
         router.post('/login',PassportAuth.authLogin,this.controllerAuth.postLogin)
+        router.get('/signup',this.controllerAuth.getSignup)
+        router.post('/signup',PassportAuth.authSignup,this.controllerAuth.postSignup)
+        router.get('/user_data', this.controllerAuth.getUserData)
+        router.get('/failsignup',this.controllerAuth.getFailSignup)
+        router.get('/faillogin',this.controllerAuth.getFailLogin)
         router.get('/logout',PassportAuth.checkAuthentication,this.controllerAuth.getLogout)
         router.get('/homeGeneral',PassportAuth.checkAuthentication,this.controllerAuth.getHomeGeneral)
         router.get('/userProfile',PassportAuth.checkAuthentication,this.controllerAuth.getUserProfile)
+        
         router.get('/chatGeneral',PassportAuth.checkAuthentication,this.controllerAuth.getChatGeneral)
         router.get('/productosClientes',PassportAuth.checkAuthentication,this.controllerAuth.getProductosClientes)
         router.get('/carritoClientes',PassportAuth.checkAuthentication,this.controllerAuth.getCarritoClientes)

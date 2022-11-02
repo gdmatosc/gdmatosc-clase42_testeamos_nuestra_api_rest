@@ -38,6 +38,22 @@ class ApiAuth{
         return {username}
     }
 
+    getSignup(){
+
+    }
+    postSignup(){
+
+    }
+    getUserData(){
+
+    }
+    getFailsignup(){
+
+    }
+    getFaillogin(){
+        
+    }
+
     /* #endregion */
 
     /* #region. 3.Authorization clientes */

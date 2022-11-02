@@ -1,9 +1,11 @@
 const {createTransport}=require('nodemailer')
 const twilio=require('twilio')
-const accountSid = process.env.TWILIO_ACCOUNTSSID; 
-const authToken = process.env.TWILIO_AUTHTOKEN; 
-const client = twilio(accountSid, authToken); 
+require('dotenv').config()
+const accountSid = process.env.TWILIO_ACCOUNTSSID
+const authToken = process.env.TWILIO_AUTHTOKEN
+const client = twilio(accountSid, authToken)
 const procAdminPhone=process.env.ADMIN_PHONE
+
 
 //let userNow=currentUser()
 let userNow=''

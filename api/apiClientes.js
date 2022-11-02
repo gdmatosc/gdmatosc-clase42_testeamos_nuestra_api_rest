@@ -4,6 +4,7 @@ const modname='[apiClientes.js]'
 const logr=logd.child({modulo:`${modname}`})
 const path = require('path')
 const FactoryDAO=require('../model/daos/indexDAO.js')
+const Productos=require('../model/models/productos.model.validar.js')
 const DAO=FactoryDAO()
 
 class ApiClientes{
@@ -40,9 +41,10 @@ class ApiClientes{
     async guardarObjetos(dataBody){
         logr.debug('guardarObjetos',{recurso:'[na]'})
         dataBody.precio=Number(dataBody.precio);
-        if(!dataBody.nombre || !dataBody.img || !dataBody.precio){
-            return res.status(400).send({error: `Los datos están incompletos ahora: ${req.body}`});
-        }
+        // if(!dataBody.nombre || !dataBody.img || !dataBody.precio){
+        //     return res.status(400).send({error: `Los datos están incompletos ahora: ${req.body}`});
+        // }
+        ApiClientes.asegurarObjetoValida(dataBody,true)
         return await DAO.productosGeneral.save(dataBody)
     }
 
@@ -100,8 +102,15 @@ class ApiClientes{
         return await DAO.carritoProductos.deleteByBody(product)
     }
 
-
     /* #endregion */
+
+    static asegurarObjetoValida(objeto,requerido){
+        try{
+            Productos.validar(objeto,requerido)
+        }catch(error){
+            throw new Error(`el producto posee un formato json invalido o faltan datos: (detalles) ${error.details[0].message}`)
+        }
+    }
 
 }
 

@@ -39,16 +39,29 @@ borrarComentariosTodos=async(req,res)=>{
 /* #region. 3.Productos*/
 
 obtenerObjetosTodos=async (req, res) => {
-    let objetosTodos=await this.apiClientes.obtenerObjetosTodos() 
-    //console.log("contenedorVar.objetosFile.RouterGet",contenedorVar)//debug
-    res.json(objetosTodos)
+    try{
+        let objetosTodos=await this.apiClientes.obtenerObjetosTodos() 
+        logr.debug(objetosTodos,{recurso:'[obtenerObjetosTodos()][objetosTodos]'})
+        //console.log("contenedorVar.objetosFile.RouterGet",contenedorVar)//debug
+        res.json(objetosTodos)
+    }
+    catch(error){
+        logr.warn(error,{recurso:'[obtenerObjetosTodos()][error]'})
+    }
+    
 }
 
 guardarObjetos=async (req,res)=>{
-    let dataBody=req.body;
-    let objetosGuardados=await this.apiClientes.guardarObjetos(dataBody)
-    //console.log("req.bodyPost.objetosFile.RouterPost",req.body) //debug
-    res.send("Guardado.routerObjetosPostFile")
+    try {
+        let dataBody=req.body;
+        let objetosGuardados=await this.apiClientes.guardarObjetos(dataBody)
+        //console.log("req.bodyPost.objetosFile.RouterPost",req.body) //debug
+        res.send("Guardado.routerObjetosPostFile")
+    }
+    catch(error){
+        logr.warn(error,{recurso:'[guardarObjetos()][error]'})
+    }
+    
 }
 
 borrarObjeto=async(req,res)=>{
@@ -57,15 +70,22 @@ borrarObjeto=async(req,res)=>{
         let objetoBorrado=await this.apiClientes.borrarObjeto(id)
         //console.log("req.paramas.apiClientes.delete",req.params)//debug        
         res.send(objetoBorrado)
-    }catch(error){
-        throw error
+    }
+    catch(error){
+        logr.warn(error,{recurso:'[borrarObjeto()][error]'})
     }
 }
 
 borrarObjetosTodos=async(req,res)=>{
-    let objetosTodosBorrados=await this.apiClientes.borrarObjetosTodos()
-    res.json(objetosTodosBorrados)
-    //console.log("borradoTotal.objetosFile.routerDelete")//debug
+    try{
+        let objetosTodosBorrados=await this.apiClientes.borrarObjetosTodos()
+        res.json(objetosTodosBorrados)
+        //console.log("borradoTotal.objetosFile.routerDelete")//debug
+    }
+    catch(error){
+        logr.warn(error,{recurso:'[borrarObjetosTodos()][error]'})
+    }
+    
 }
 
 /* #endregion */
