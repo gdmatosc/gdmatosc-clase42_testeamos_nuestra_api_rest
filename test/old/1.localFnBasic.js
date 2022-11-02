@@ -1,10 +1,10 @@
-const FactoryDAO=require('../model/daos/indexDAO.js')
+const FactoryDAO=require('../../model/daos/indexDAO.js')
 const DAO=FactoryDAO()
 const assert=require('assert').strict
-const logd = require('../logging.js')
+const logd = require('../../logging.js')
 const modname='[1.localFnBasic.js]'
 const logr=logd.child({modulo:`${modname}`})
-const ApiClientes=require('../api/apiClientes.js')
+const ApiClientes=require('../../api/apiClientes.js')
 //const productosGeneralMongoLDBDAO=require('../model/daos/productos/productosLDBDAO')
 
 //plantilla
